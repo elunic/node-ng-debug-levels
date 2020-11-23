@@ -1,0 +1,25 @@
+{
+  "name": "ng-debug-levels",
+  "version": "0.2.0",
+  "description": "Provides a LogModule to integrate debug with levels in Angular 9+.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elunic/node-ng-debug-levels.git"
+  },
+  "author": {
+    "name": "elunic AG/William Hefter",
+    "email": "wh@elunic.com"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@angular/common": "^9.1.12",
+    "@angular/core": "^9.1.12",
+    "@elunic/debug-levels": ">=0.2.5 <0.3"
+  },
+  "dependencies": {
+    "tslib": "^1.10.0"
+  }
+}
