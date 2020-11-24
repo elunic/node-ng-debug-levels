@@ -6,5 +6,9 @@
     "umdModuleIds": {
       "@elunic/debug-levels": "elunic__debugLevels"
     }
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "tslib",
+    "@elunic/debug-levels"
+  ]
 }
