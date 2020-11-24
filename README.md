@@ -1,27 +1,80 @@
-# NgDebugLevelsDev
+# `ng-debug-levels`
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.12.
+- [`ng-debug-levels`](#ng-debug-levels)
+  - [Installation](#installation)
+  - [Quickstart](#quickstart)
+  - [License](#license)
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```bash
+$ npm i -D ng-debug-levels
+```
 
-## Code scaffolding
+## Quickstart
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+`app.module.ts`
 
-## Build
+```typescript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { LogModule } from 'ng-debug-levels';
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+import { AppComponent } from './app.component';
 
-## Running unit tests
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, LogModule],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+`app.component.ts`
 
-## Running end-to-end tests
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Logger, LogService } from 'ng-debug-levels';
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+})
+export class AppComponent implements OnInit {
+  private readonly logger: Logger;
 
-## Further help
+  constructor(private readonly logService: LogService) {
+    this.logger = this.logService.createLogger('appComponent');
+  }
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+  ngOnInit(): void {
+    this.logger.info('test');
+  }
+}
+```
+
+## License
+
+MIT License
+
+Copyright (c) 2019 elunic AG/William Hefter <wh@elunic.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
