@@ -1,4 +1,4 @@
-FROM node:12-buster
+FROM node:18
 
 ENV PATH /app/node_modules/.bin:$PATH
 
@@ -9,4 +9,4 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
     && apt-get install -yq jq nano bash-completion \
     && npm completion > /etc/bash_completion.d/npm
 
-RUN npm install -g @angular/cli@^9
+RUN npm install -g @angular/cli@^16

@@ -1,80 +1,24 @@
-# `ng-debug-levels`
+# NgDebugLevels
 
-- [`ng-debug-levels`](#ng-debug-levels)
-  - [Installation](#installation)
-  - [Quickstart](#quickstart)
-  - [License](#license)
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
 
-## Installation
+## Code scaffolding
 
-```bash
-$ npm i -D ng-debug-levels
-```
+Run `ng generate component component-name --project ng-debug-levels` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-debug-levels`.
+> Note: Don't forget to add `--project ng-debug-levels` or else it will be added to the default project in your `angular.json` file. 
 
-## Quickstart
+## Build
 
-`app.module.ts`
+Run `ng build ng-debug-levels` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-```typescript
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { LogModule } from 'ng-debug-levels';
+## Publishing
 
-import { AppComponent } from './app.component';
+After building your library with `ng build ng-debug-levels`, go to the dist folder `cd dist/ng-debug-levels` and run `npm publish`.
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, LogModule],
-  providers: [],
-  bootstrap: [AppComponent],
-})
-export class AppModule {}
-```
+## Running unit tests
 
-`app.component.ts`
+Run `ng test ng-debug-levels` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-```typescript
-import { Component, OnInit } from '@angular/core';
-import { Logger, LogService } from 'ng-debug-levels';
+## Further help
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-})
-export class AppComponent implements OnInit {
-  private readonly logger: Logger;
-
-  constructor(private readonly logService: LogService) {
-    this.logger = this.logService.createLogger('appComponent');
-  }
-
-  ngOnInit(): void {
-    this.logger.info('test');
-  }
-}
-```
-
-## License
-
-MIT License
-
-Copyright (c) 2019 elunic AG/William Hefter <wh@elunic.com>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

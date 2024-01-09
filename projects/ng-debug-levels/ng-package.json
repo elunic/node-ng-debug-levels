@@ -2,13 +2,9 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ng-debug-levels",
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "umdModuleIds": {
-      "@elunic/debug-levels": "elunic__debugLevels"
-    }
+    "entryFile": "src/public-api.ts"
   },
-  "whitelistedNonPeerDependencies": [
-    "tslib",
+  "allowedNonPeerDependencies": [
     "@elunic/debug-levels"
   ]
 }

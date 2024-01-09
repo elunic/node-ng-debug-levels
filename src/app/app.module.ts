@@ -5,9 +5,14 @@ import { LogModule } from 'ng-debug-levels';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, LogModule],
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    LogModule
+  ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

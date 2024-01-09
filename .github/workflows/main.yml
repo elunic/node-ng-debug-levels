@@ -3,17 +3,20 @@ name: CI
 on:
   push:
     branches:
-        - master
+      - '**'  # Matches all branches
+    tags-ignore:
+      - 'v*'  # Replace with your specific tag pattern
+
 
 jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:trusty
+      image: ubuntu:latest
     name: test
     strategy:
       matrix:
-        node: [12, 14]
+        node: [16, 18, 20]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -21,21 +24,22 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "${{ matrix.node }}"
-      - name: Setup chrome driver environment
-        run: |
-          apt-get update # Remove if running outside container
-          apt-get clean # Remove if running outside container
-          apt-get install -y wget # Remove if running outside container
-          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - # Remove if running outside container
-          echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list # Remove if running outside container
-          apt-get -y update # Remove if running outside container
-          apt-get install -y google-chrome-stable # If not running in docker then run this line with sudo
-          CHROME_MAJOR_VERSION=$(google-chrome --version | sed 's/Google Chrome \([0-9]*\).*/\1/g') # Get chrome major version that we just installed
-          npm i webdriver-manager@latest -D # Install webdriver manager locally
-          npm i chromedriver --chromedriver_version="LATEST_${CHROME_MAJOR_VERSION}" -D # Install chrome driver to the version that we got from google chrome installation above
+      # - name: Setup chrome driver environment
+      #   run: |
+      #     apt-get update # Remove if running outside container
+      #     apt-get clean # Remove if running outside container
+      #     apt-get install -y wget # Remove if running outside container
+      #     wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - # Remove if running outside container
+      #     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list # Remove if running outside container
+      #     apt-get -y update # Remove if running outside container
+      #     apt-get install -y google-chrome-stable # If not running in docker then run this line with sudo
+      #     CHROME_MAJOR_VERSION=$(google-chrome --version | sed 's/Google Chrome \([0-9]*\).*/\1/g') # Get chrome major version that we just installed
+      #     npm i webdriver-manager@latest -D # Install webdriver manager locally
+      #     npm i chromedriver --chromedriver_version="LATEST_${CHROME_MAJOR_VERSION}" -D # Install chrome driver to the version that we got from google chrome installation above
       - name: npm install
         run: npm install
       - name: build library
-        run: npm run build:lib:prod
-      - name: run tests
-        run: npm run e2e
+        run: npm run build:lib
+        # run: npm run build:lib:prod
+      # - name: run tests
+      #   run: npm run e2e

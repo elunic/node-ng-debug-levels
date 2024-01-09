@@ -1,7 +1,0 @@
-{
-  "extends": [
-    "./tslint.json",
-    "../../tslint.fix.json"
-  ],
-  "rules": {}
-}
